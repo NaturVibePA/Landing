@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NatureVibe - Natural Energy & Immunity Drinks</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary-blue: #4a90e2;
+      --light-blue: #87ceeb;
+      --accent-orange: #ff7e5f;
+      --dark-blue: #2c5aa0;
+      --light-bg: #f9f9f9;
+      --white: #ffffff;
+      --text-dark: #333333;
+      --text-light: #666666;
+      --gradient-primary: linear-gradient(135deg, #4a90e2, #87ceeb);
+      --gradient-secondary: linear-gradient(135deg, #ff7e5f, #feb47b);
+    }
+
+    body {
+      font-family: 'Montserrat', 'Cairo', sans-serif;
+      background: var(--gradient-primary);
+      color: var(--white);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.15);
+      padding: 40px;
+      border-radius: 20px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.25);
+      max-width: 500px;
+      width: 90%;
+      margin-bottom: 30px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .language-switcher {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      gap: 10px;
+    }
+
+    .lang-btn {
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      color: white;
+      padding: 8px 15px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.3s;
+      font-weight: 500;
+    }
+
+    .lang-btn.active {
+      background: var(--white);
+      color: var(--primary-blue);
+    }
+
+    .logo {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: #e9f5ff;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+
+    .tagline {
+      font-size: 18px;
+      margin-bottom: 30px;
+      color: #d0e8ff;
+      font-weight: 500;
+    }
+
+    .stats {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 30px;
+      font-size: 14px;
+      color: #e9f5ff;
+    }
+
+    .stat-item {
+      display: flex;
+      flex-direction: column;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 15px 20px;
+      border-radius: 12px;
+      margin: 0 10px;
+    }
+
+    .stat-number {
+      font-weight: 700;
+      font-size: 22px;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      font-size: 26px;
+      font-weight: 600;
+    }
+
+    .description {
+      margin-bottom: 30px;
+      line-height: 1.6;
+      color: #d0e8ff;
+    }
+
+    .benefits {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+
+    .benefit {
+      background: rgba(255, 255, 255, 0.15);
+      padding: 18px 12px;
+      border-radius: 12px;
+      margin: 5px;
+      flex: 1;
+      min-width: 120px;
+      transition: transform 0.3s, background 0.3s;
+    }
+
+    .benefit:hover {
+      transform: translateY(-5px);
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .benefit-icon {
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+
+    select {
+      padding: 14px 18px;
+      border-radius: 12px;
+      border: none;
+      font-size: 16px;
+      margin-bottom: 20px;
+      width: 100%;
+      font-family: 'Montserrat', 'Cairo', sans-serif;
+      background: rgba(255, 255, 255, 0.9);
+      color: var(--dark-blue);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: all 0.3s;
+    }
+
+    select:focus {
+      outline: none;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+      background: white;
+    }
+
+    .link-container {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+      margin-top: 20px;
+      animation: fadeIn 0.5s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .link-container a {
+      text-decoration: none;
+      background: var(--gradient-secondary);
+      color: white;
+      padding: 14px 30px;
+      border-radius: 12px;
+      font-weight: 600;
+      transition: 0.3s;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    .link-container a:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+    }
+
+    .new-badge {
+      background: var(--accent-orange);
+      color: white;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      margin-left: 10px;
+      vertical-align: middle;
+      font-weight: 600;
+    }
+
+    .footer {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #d0e8ff;
+    }
+
+    .product-image {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      margin: 0 auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 40px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 25px;
+      }
+      
+      .benefits {
+        flex-direction: column;
+      }
+      
+      .benefit {
+        margin-bottom: 10px;
+      }
+      
+      .language-switcher {
+        position: relative;
+        top: 0;
+        right: 0;
+        justify-content: center;
+        margin-bottom: 20px;
+      }
+    }
+
+    /* RTL styles for Arabic */
+    body.rtl {
+      direction: rtl;
+      text-align: right;
+      font-family: 'Cairo', sans-serif;
+    }
+
+    body.rtl .language-switcher {
+      right: auto;
+      left: 20px;
+    }
+
+    body.rtl .new-badge {
+      margin-left: 0;
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body class="ltr">
+  <div class="language-switcher">
+    <button class="lang-btn active" id="englishBtn">English</button>
+    <button class="lang-btn" id="arabicBtn">العربية</button>
+  </div>
+
+  <div class="container">
+    <div class="logo" data-en="NatureVibe" data-ar="NatureVibe">NatureVibe</div>
+    <div class="tagline" data-en="Natural drinks to boost energy, immunity and vitality" data-ar="مشروبات طبيعية لتعزيز الطاقة والمناعة والحوية">Natural drinks to boost energy, immunity and vitality</div>
+    
+
+    <h1>
+      <span data-en="Select Your Country" data-ar="اختر بلدك">Select Your Country</span>
+    </h1>
+    <p class="description" data-en="Choose your location to get NatureVibe natural drinks suitable for your region" data-ar="اختر موقعك للحصول على مشروبات NatureVibe الطبيعية المناسبة لمنطقتك">Choose your location to get NatureVibe natural drinks suitable for your region</p>
+    
+    <select id="countrySelector">
+      <option value="">-- <span data-en="Choose Country" data-ar="اختر البلد">Choose Country</span> --</option>
+      <!-- Countries sorted alphabetically in English -->
+      <option value="https://bhipshop.com/en/shop/hspoarrkkmk" data-en="Palestine" data-ar="فلسطين">Palestine</option>
+       <option value="https://bhipshop.com/en/shop/uioarrkkmkl" data-en="Israel" data-ar="اسرائيل">Israel</option>
+      <option value="https://bhipshop.com/en/shop/wrrkkmkeaoa" data-en="United Arab Emirates" data-ar="الإمارات العربية المتحدة">United Arab Emirates</option>
+    </select>
+
+    <div class="link-container" id="linkContainer">
+      <p data-en="Your special URL:" data-ar="الرابط الخاص بك:">Your special URL:</p>
+      <a id="forwardButton" href="#" target="_blank" data-en="Visit Your Country Page" data-ar="زر صفحة بلدك">Visit Your Country Page</a>
+    </div>
+    <div class="benefits">
+      <div class="benefit">
+        <div class="benefit-icon">⚡</div>
+        <div data-en="Energy Boost and Vitality" data-ar="تعزيز الطاقة والنشاط">Energy Boost</div>
+      </div>
+      <div class="benefit">
+        <div class="benefit-icon">🛡️</div>
+        <div data-en="Immunity Support" data-ar="تقوية المناعة">Immunity Support</div>
+      </div>
+      <div class="benefit">
+        <div class="benefit-icon">💚</div>
+        <div data-en="Weight Loss" data-ar="فقدان الوزن">Vitality</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer" data-en="NatureVibe - Natural Solutions for Low Energy" data-ar="NatureVibe - حلول طبيعية للطاقة المنخفضة">NatureVibe - Natural Solutions for Low Energy</div>
+
+  <script>
+    const selector = document.getElementById('countrySelector');
+    const linkContainer = document.getElementById('linkContainer');
+    const forwardButton = document.getElementById('forwardButton');
+    const englishBtn = document.getElementById('englishBtn');
+    const arabicBtn = document.getElementById('arabicBtn');
+    const body = document.body;
+
+    // Country selector functionality
+    selector.addEventListener('change', () => {
+      const selectedURL = selector.value;
+      if(selectedURL){
+        forwardButton.href = selectedURL;
+        linkContainer.style.display = 'flex';
+      } else {
+        linkContainer.style.display = 'none';
+      }
+    });
+
+    // Language switching functionality
+    function switchLanguage(lang) {
+      if (lang === 'ar') {
+        body.classList.remove('ltr');
+        body.classList.add('rtl');
+        englishBtn.classList.remove('active');
+        arabicBtn.classList.add('active');
+        
+        // Sort options alphabetically in Arabic
+        const options = Array.from(selector.querySelectorAll('option'));
+        options.sort((a, b) => {
+          if (a.value === "" || b.value === "") return 0;
+          return a.getAttribute('data-ar').localeCompare(b.getAttribute('data-ar'), 'ar');
+        });
+        
+        // Clear and re-add sorted options
+        selector.innerHTML = '';
+        options.forEach(option => selector.appendChild(option));
+        
+        // Update text content for Arabic
+        document.querySelectorAll('[data-en], [data-ar]').forEach(element => {
+          if (element.hasAttribute('data-ar')) {
+            element.textContent = element.getAttribute('data-ar');
+          }
+        });
+      } else {
+        body.classList.remove('rtl');
+        body.classList.add('ltr');
+        arabicBtn.classList.remove('active');
+        englishBtn.classList.add('active');
+        
+        // Sort options alphabetically in English
+        const options = Array.from(selector.querySelectorAll('option'));
+        options.sort((a, b) => {
+          if (a.value === "" || b.value === "") return 0;
+          return a.getAttribute('data-en').localeCompare(b.getAttribute('data-en'));
+        });
+        
+        // Clear and re-add sorted options
+        selector.innerHTML = '';
+        options.forEach(option => selector.appendChild(option));
+        
+        // Update text content for English
+        document.querySelectorAll('[data-en], [data-ar]').forEach(element => {
+          if (element.hasAttribute('data-en')) {
+            element.textContent = element.getAttribute('data-en');
+          }
+        });
+      }
+    }
+
+    // Event listeners for language buttons
+    englishBtn.addEventListener('click', () => switchLanguage('en'));
+    arabicBtn.addEventListener('click', () => switchLanguage('ar'));
+  </script>
+</body>
+</html>
+
+
